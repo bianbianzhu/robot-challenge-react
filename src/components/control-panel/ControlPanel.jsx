@@ -75,6 +75,8 @@ const ControlPanel = ({setIsMusicPlaying}) => {
       >
         Report
       </button>
+
+      
     </div>
   );
 
