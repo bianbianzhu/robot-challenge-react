@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/robot-challenge-react/static/css/main.60ec26e5.chunk.css",
+    "main.js": "/robot-challenge-react/static/js/main.9f3ff70e.chunk.js",
+    "main.js.map": "/robot-challenge-react/static/js/main.9f3ff70e.chunk.js.map",
+    "runtime-main.js": "/robot-challenge-react/static/js/runtime-main.b94a2fdf.js",
+    "runtime-main.js.map": "/robot-challenge-react/static/js/runtime-main.b94a2fdf.js.map",
+    "static/js/2.ccfd958a.chunk.js": "/robot-challenge-react/static/js/2.ccfd958a.chunk.js",
+    "static/js/2.ccfd958a.chunk.js.map": "/robot-challenge-react/static/js/2.ccfd958a.chunk.js.map",
+    "static/js/3.ff4d0136.chunk.js": "/robot-challenge-react/static/js/3.ff4d0136.chunk.js",
+    "static/js/3.ff4d0136.chunk.js.map": "/robot-challenge-react/static/js/3.ff4d0136.chunk.js.map",
+    "index.html": "/robot-challenge-react/index.html",
+    "static/css/main.60ec26e5.chunk.css.map": "/robot-challenge-react/static/css/main.60ec26e5.chunk.css.map",
+    "static/js/2.ccfd958a.chunk.js.LICENSE.txt": "/robot-challenge-react/static/js/2.ccfd958a.chunk.js.LICENSE.txt",
+    "static/media/robotjs.fe2c899b.png": "/robot-challenge-react/static/media/robotjs.fe2c899b.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b94a2fdf.js",
+    "static/js/2.ccfd958a.chunk.js",
+    "static/css/main.60ec26e5.chunk.css",
+    "static/js/main.9f3ff70e.chunk.js"
+  ]
+}
