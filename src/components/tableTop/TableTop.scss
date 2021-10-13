@@ -1,0 +1,26 @@
+.table-top {
+  width: 80%;
+  max-width: 100rem;
+  aspect-ratio: 1;
+  background-image: url(https://images.theconversation.com/files/223749/original/file-20180619-126537-5l632j.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop);
+  background-position: center;
+  background-size: 105% 105%;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  &::before {
+    content: 'N';
+    position: absolute;
+    color: red;
+    font-size: 4rem;
+    font-weight: bold;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

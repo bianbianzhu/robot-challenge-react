@@ -1,0 +1,8 @@
+.control-panel {
+    display: flex;
+    gap: 3rem;
+
+    & > * {
+        align-self: center;
+    }
+}
