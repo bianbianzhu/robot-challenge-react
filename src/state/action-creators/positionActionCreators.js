@@ -53,3 +53,31 @@ export const placeNewRobot = (data) => {
       })
   }
 }
+
+
+export const selectRobot = (data) => {
+  return (dispatch) => {
+    dispatch({
+      type: "SELECT",
+      payload: data
+    })
+  }
+}
+
+
+export const resetBattle = () => {
+  return (dispatch) => {
+    dispatch({
+      type: "RESET",
+    })
+  }
+}
+
+export const deleteRobot = (data) => {
+  return (dispatch) => {
+    dispatch({
+      type: "DELETE",
+      payload: data
+    })
+  }
+}

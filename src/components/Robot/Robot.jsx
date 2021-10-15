@@ -76,7 +76,16 @@ const StyledRobot = styled.span`
 `;
 
 const Robot = ({ robotNo }) => {
-  const robot = useSelector((state) => state.robots.robots[robotNo - 1]);
+  const robot = useSelector((state) => state.robots.robots.filter((robot) => robot.robotNo === robotNo)[0]);
+  
+  //if we use  state.robots.robots[robotNo - 1]
+  // when deleting one robot, lets say you have 4 robots atm, if robot No.3 got deleted, 
+
+  //robots: [{1}, {2}, {3}, {4}]  -> robots: [{1}, {2}, {4}]
+  //robot-rendered: robots[0] robots[1] robots[2] robots[3] -> robots[0] robots[1] robots[3]
+  //robots[3] is not available
+
+
   const activeRobotNo = useSelector((state) => state.robots.activeRobotNo);
 
   ///check if the robot has been placed on the table

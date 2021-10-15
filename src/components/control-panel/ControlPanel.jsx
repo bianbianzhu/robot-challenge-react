@@ -3,41 +3,39 @@ import "./ControlPanel.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "../../state/action-creators";
 import { bindActionCreators } from "redux";
-import { isTrue } from "../../utils";
 import PlaceInput from "../place-input/PlaceInput";
 
 const ControlPanel = ({setIsMusicPlaying}) => {
-  const robot = useSelector((state) => state.robots.robots[state.robots.activeRobotNo-1]);
+  // const robot = useSelector((state) => state.robots.robots[state.robots.activeRobotNo-1]);
+
+  const robots = useSelector((state) => state.robots.robots);
   const activeRobotNo = useSelector((state) => state.robots.activeRobotNo)
 
   const dispatch = useDispatch();
 
-  const checkIfPlaced = (robot) =>
-    isTrue(robot.x) && isTrue(robot.y) && isTrue(robot.face)
-      ? true
-      : false;
+  // const checkIfPlaced = (robot) =>
+  //   isTrue(robot.x) && isTrue(robot.y) && isTrue(robot.face)
+  //     ? true
+  //     : false;
 
   const {
     moveRobot,
     leftTurnRobot,
     rightTurnRobot,
     reportPosition,
-    placeNewRobot,
+    resetBattle
   } = bindActionCreators(actionCreators, dispatch);
 
-  const origin = {
-    x: 0,
-    y: 0,
-    face: 0,
-  };
+
   
-  if (robot && checkIfPlaced(robot))
+  if (robots.length > 0)
   return (
     <div className="control-panel">
       <PlaceInput setIsMusicPlaying={setIsMusicPlaying}/>
       <button
         onClick={() => {
-          placeNewRobot(origin);
+         resetBattle()
+         setIsMusicPlaying(false)
         }}
       >
         Reset
@@ -46,7 +44,7 @@ const ControlPanel = ({setIsMusicPlaying}) => {
         onClick={() => {
           moveRobot(activeRobotNo);
         }}
-        disabled={checkIfPlaced(robot) ? false : true}
+        // disabled={checkIfPlaced(robot) ? false : true}
       >
         Move
       </button>
@@ -54,7 +52,7 @@ const ControlPanel = ({setIsMusicPlaying}) => {
         onClick={() => {
           leftTurnRobot(activeRobotNo);
         }}
-        disabled={checkIfPlaced(robot) ? false : true}
+        // disabled={checkIfPlaced(robot) ? false : true}
       >
         Left
       </button>
@@ -62,7 +60,7 @@ const ControlPanel = ({setIsMusicPlaying}) => {
         onClick={() => {
           rightTurnRobot(activeRobotNo);
         }}
-        disabled={checkIfPlaced(robot) ? false : true}
+        // disabled={checkIfPlaced(robot) ? false : true}
       >
         Right
       </button>
@@ -71,7 +69,7 @@ const ControlPanel = ({setIsMusicPlaying}) => {
         onClick={() => {
           reportPosition(activeRobotNo);
         }}
-        disabled={checkIfPlaced(robot) ? false : true}
+        // disabled={checkIfPlaced(robot) ? false : true}
       >
         Report
       </button>
@@ -80,7 +78,7 @@ const ControlPanel = ({setIsMusicPlaying}) => {
     </div>
   );
 
-  return  <PlaceInput />
+  return  <PlaceInput setIsMusicPlaying={setIsMusicPlaying} />
 };
 
 export default ControlPanel;

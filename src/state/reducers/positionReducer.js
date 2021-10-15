@@ -1,13 +1,16 @@
+import { isTrue } from "../../utils";
+
 const initialState = {
-  activeRobotNo: 1,
+  totalNo: 0,
+  activeRobotNo: undefined,
   robots: [
-    {
-      robotNo: 1,
-      x: 0,
-      y: 0,
-      face: 0,
-      isReporting: false,
-    },
+    // {
+    //   robotNo: 1,
+    //   x: 0,
+    //   y: 0,
+    //   face: 0,
+    //   isReporting: false,
+    // },
   ],
 };
 
@@ -17,7 +20,8 @@ const initialState = {
 //   y: undefined,
 //   face: undefined,
 //   isReporting: false,
-// };
+// }; //face must be 0, 1, 2, 3
+
 
 const positionReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -26,15 +30,18 @@ const positionReducer = (state = initialState, action) => {
         action.payload.x >= 0 &&
         action.payload.y >= 0 &&
         action.payload.x <= 4 &&
-        action.payload.y <= 4
+        action.payload.y <= 4 &&
+        isTrue(action.payload.face)
       ) {
         return {
           ...state,
-          activeRobotNo: state.robots.length + 1, //new robot is the active robot
+          totalNo: ++state.totalNo,
+          // activeRobotNo: state.robots.length + 1, //new robot is the active robot
+          activeRobotNo: state.totalNo,
           robots: [
             ...state.robots,
             {
-              robotNo: state.robots.length + 1,
+              robotNo: state.totalNo,// this is apparently not correct. If one robot got deleted, then the next robot you add will have a repulicated robotNo. -- try to make the robotNo a global variable -- like count. 
               x: action.payload.x,
               y: action.payload.y,
               face: action.payload.face,
@@ -102,12 +109,10 @@ const positionReducer = (state = initialState, action) => {
               isReporting: false,
             };
           }
-
-          return robot //be careful here
-
-        } else {
-          return robot;
-        }
+          return robot; //be careful here
+        } 
+        return robot;
+        
       });
 
       // if (activedRobot.face === 0 && activedRobot.y < 4) {
@@ -155,13 +160,11 @@ const positionReducer = (state = initialState, action) => {
       //   --activedRobot.x;
       //   activedRobot.isReporting = false;
 
-        return {
-          ...state,
-          robots: newArray,
-        };
-      }
-
-    
+      return {
+        ...state,
+        robots: newArray,
+      };
+    }
 
     case "LEFT": {
       // const index = state.robots.findIndex(
@@ -262,31 +265,83 @@ const positionReducer = (state = initialState, action) => {
       /////////////////////map way is working////////////////////////////////////////////
 
       const newArray = state.robots.map((robot) => {
+        
         if (robot.robotNo === action.payload) {
           return {
             ...robot,
             isReporting: true,
           };
         } else {
+          console.log('wrong 1');
           return robot;
         }
       });
-
+      
       return {
         ...state,
         robots: newArray,
       };
     }
 
-    case "RESET" : {
-
-       
+    case "RESET": {
       return {
         ...state,
-        robots: [
-          ...state.robots
-        ]
+        totalNo: 0,
+        activeRobotNo: undefined,
+        robots: [],
+      };
+    }
+
+    case "SELECT": {
+      return {
+        ...state,
+        activeRobotNo: action.payload,
+      };
+    }
+
+    case "DELETE": {
+      const filteredRobots = state.robots.filter(
+        (robot) => robot.robotNo !== action.payload
+      );
+
+      // const filteredRobots = state.robots.map((robot) => {
+
+      //   if (robot.robotNo !== action.payload) {
+      //     return robot
+      //   }
+
+      //   return {
+      //     robotNo: undefined,
+      //     x: undefined,
+      //     y: undefined,
+      //     face: undefined,
+      //     isReporting: false
+      //   }
+      // })
+
+      if (filteredRobots.length === 0) {
+        return {
+          ...state,
+          activeRobotNo: undefined,
+          robots: [],
+        };
       }
+
+      if (filteredRobots.length > 0 && state.activeRobotNo === action.payload) {
+
+        const allRobotNo = filteredRobots.map(robot => (robot.robotNo))
+        return {
+          ...state,
+          activeRobotNo: Math.max.apply(Math, allRobotNo),//find the max number in the array
+          robots: filteredRobots,
+        };
+      }
+
+
+      return {
+        ...state,
+        robots: filteredRobots,
+      };
     }
 
     default:

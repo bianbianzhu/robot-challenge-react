@@ -6,6 +6,7 @@ import { isInt } from "../../utils";
 import "./PlaceInput.scss";
 
 const PlaceInput = ({ setIsMusicPlaying }) => {
+
   const dispatch = useDispatch();
 
   const { placeNewRobot } = bindActionCreators(actionCreators, dispatch);
@@ -36,12 +37,12 @@ const PlaceInput = ({ setIsMusicPlaying }) => {
 
   const inputFaceChangeHandler = (e) => {
     if (isInt(e.target.value)) {
-        setPlacedNewRobot({
-            ...placedNewRobot,
-            face: parseInt(e.target.value)
-        })
+      setPlacedNewRobot({
+        ...placedNewRobot,
+        face: parseInt(e.target.value),
+      });
     }
-  };//e.target.value is a string - be careful
+  }; //e.target.value is a string - be careful
 
   return (
     <div className="place-input">
@@ -63,8 +64,8 @@ const PlaceInput = ({ setIsMusicPlaying }) => {
       </select>
       <button
         onClick={() => {
+          setIsMusicPlaying(true);
           placeNewRobot(placedNewRobot);
-          setIsMusicPlaying(true)
         }}
       >
         Place New
