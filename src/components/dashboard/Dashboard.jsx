@@ -34,7 +34,7 @@ const Dashboard = () => {
 
     return (
         <div>
-            <h2>DashBoard</h2>
+            <h1>ROBOT CHALLENGE</h1>
         </div>
     )
 

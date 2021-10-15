@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './Player.scss'
 
 
 
@@ -28,7 +29,7 @@ const Player = ({ url, isMusicPlaying, setIsMusicPlaying }) => {
   const [playing, toggle] = useAudio(url);
 
   return (
-    <div>
+    <div className="music-player">
       <button onClick={toggle}>{playing ? "Pause" : "Play"}</button>
     </div>
   );
