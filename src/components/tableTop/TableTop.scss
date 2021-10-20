@@ -1,6 +1,6 @@
 .table-top {
   height: 100%;
-  max-width: 100rem;
+  max-width: 175rem;
   aspect-ratio: 1;
   background-image: url(https://images.theconversation.com/files/223749/original/file-20180619-126537-5l632j.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop);
   background-position: center;
@@ -17,11 +17,11 @@
     content: "N";
     position: absolute;
     color: #fff;
-    font-size: 2rem;
+    font-size: clamp(2rem, 2vw, 13rem);
     font-weight: bold;
-    top: 0;
+    top: 1rem;
     left: 50%;
-    width: 10rem;
+    width: 15%;
     aspect-ratio: 1;
     background-image: url(../../assets/images/compass.png);
     background-size: 100% 100%;

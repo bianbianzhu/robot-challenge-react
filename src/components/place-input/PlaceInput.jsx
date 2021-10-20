@@ -4,9 +4,9 @@ import { bindActionCreators } from "redux";
 import { actionCreators } from "../../state/action-creators";
 import { isInt } from "../../utils";
 import "./PlaceInput.scss";
+import { CgAdd } from "react-icons/cg";
 
 const PlaceInput = ({ setIsMusicPlaying }) => {
-
   const dispatch = useDispatch();
 
   const { placeNewRobot } = bindActionCreators(actionCreators, dispatch);
@@ -68,6 +68,7 @@ const PlaceInput = ({ setIsMusicPlaying }) => {
           placeNewRobot(placedNewRobot);
         }}
       >
+        <CgAdd />
         Place New
       </button>
     </div>

@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "../../state/action-creators";
 import { bindActionCreators } from "redux";
 import PlaceInput from "../place-input/PlaceInput";
+import { CgCornerUpRight, CgCornerUpLeft } from "react-icons/cg";
+import { BiMoveVertical, BiReset, BiShow } from "react-icons/bi";
 
 const ControlPanel = ({ setIsMusicPlaying }) => {
   // const robot = useSelector((state) => state.robots.robots[state.robots.activeRobotNo-1]);
@@ -36,6 +38,7 @@ const ControlPanel = ({ setIsMusicPlaying }) => {
             setIsMusicPlaying(false);
           }}
         >
+          <BiReset />
           Reset
         </button>
         <button
@@ -44,6 +47,7 @@ const ControlPanel = ({ setIsMusicPlaying }) => {
           }}
           // disabled={checkIfPlaced(robot) ? false : true}
         >
+          <BiMoveVertical />
           Move
         </button>
         <button
@@ -52,7 +56,8 @@ const ControlPanel = ({ setIsMusicPlaying }) => {
           }}
           // disabled={checkIfPlaced(robot) ? false : true}
         >
-          Left
+          <CgCornerUpLeft />
+          Turn Left
         </button>
         <button
           onClick={() => {
@@ -60,7 +65,8 @@ const ControlPanel = ({ setIsMusicPlaying }) => {
           }}
           // disabled={checkIfPlaced(robot) ? false : true}
         >
-          Right
+          <CgCornerUpRight />
+          Turn right
         </button>
 
         <button
@@ -69,6 +75,7 @@ const ControlPanel = ({ setIsMusicPlaying }) => {
           }}
           // disabled={checkIfPlaced(robot) ? false : true}
         >
+          <BiShow />
           Report
         </button>
       </div>
